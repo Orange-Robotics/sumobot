@@ -1,6 +1,6 @@
-//this test gets the sensor to controll the motor
-//if the sensor reads a dark color (2500) the motor stops
-//if the sensor reads a lighter color (not 2500) the motor keeps going
+//this test gets the reflectance sensor to control the motor
+//if the ref. sensor reads a dark color (2500) the motor stops
+//if the ref. sensor reads a lighter color (not 2500) the motor keeps going
 //this code also includes code for the distance sensor.
 //uses switch cases to execute certain actions based off of the "state"
 
