@@ -106,28 +106,28 @@ void loop()
   Serial.print(sensorValues[0]);
 
   //line detected (2500), motion detected (>600)
-  if (sensorValues[0] == 2500 && val > 600)
+  if ((sensorValues[0] == 2500 && val > 600) || (sensorValues[1] == 2500 && val > 600))
   {
     //attackQ = false;
     //stopp();
     state = 0;
   }
   //line detected(2500), no motion detected (<600)
-  if (sensorValues[0] == 2500 && val < 600)
+  if ((sensorValues[0] == 2500 && val < 600) || (sensorValues[1] == 2500 && val < 600))
   {
     //attackQ = false;
     //stopp();
     state = 1;
   }
   //no line detected (!2500), motion detected (>600)
-  if (sensorValues[0] != 2500 && val > 600)
+  if ((sensorValues[0] != 2500 && val > 600) || (sensorValues[0] != 2500 && val > 600))
   {
     //attackQ = true;
     //forward();
     state = 2;
   }
   //no line detected (!2500), no motion detected (<600)
-  if (sensorValues[0] != 2500 && val < 600)
+  if ((sensorValues[0] != 2500 && val < 600) || (sensorValues[0] != 2500 && val < 600))
   {
     //attackQ = true;
     //forward();
