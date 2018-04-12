@@ -24,7 +24,7 @@
 
 // sensors 0 through 7 are connected to digital pins 3 through 10, respectively
 QTRSensorsRC qtrrc((unsigned char[]) {
-  3
+  2,3
   //, 4, 5, 6, 7, 8, 9, 10
 },
 NUM_SENSORS, TIMEOUT, EMITTER_PIN);
@@ -46,6 +46,7 @@ const int ENB = 8;
 int sensorPin = A0;
 
 int state;
+int dist = 300;
 
 char dir;
 void setup()
@@ -102,32 +103,35 @@ void loop()
   //delay(100);
 
   //----reflectance
-  Serial.print("ref.: ");
+  Serial.print("ref. 1: ");
   Serial.print(sensorValues[0]);
 
+Serial.print("ref. 2: ");
+  Serial.print(sensorValues[1]);  
+
   //line detected (2500), motion detected (>600)
-  if ((sensorValues[0] == 2500 && val > 600) || (sensorValues[1] == 2500 && val > 600))
+  if ((sensorValues[0] == 2500 && val > dist) || (sensorValues[1] == 2500 && val > dist))
   {
     //attackQ = false;
     //stopp();
     state = 0;
   }
   //line detected(2500), no motion detected (<600)
-  if ((sensorValues[0] == 2500 && val < 600) || (sensorValues[1] == 2500 && val < 600))
+  if ((sensorValues[0] == 2500 && val < dist) || (sensorValues[1] == 2500 && val < dist))
   {
     //attackQ = false;
     //stopp();
     state = 1;
   }
   //no line detected (!2500), motion detected (>600)
-  if ((sensorValues[0] != 2500 && val > 600) || (sensorValues[0] != 2500 && val > 600))
+  if ((sensorValues[0] != 2500 && val > dist) || (sensorValues[0] != 2500 && val > dist))
   {
     //attackQ = true;
     //forward();
     state = 2;
   }
   //no line detected (!2500), no motion detected (<600)
-  if ((sensorValues[0] != 2500 && val < 600) || (sensorValues[0] != 2500 && val < 600))
+  if ((sensorValues[0] != 2500 && val < dist) || (sensorValues[0] != 2500 && val < dist))
   {
     //attackQ = true;
     //forward();
